@@ -13,6 +13,7 @@ PostgreSQL
 
 Backend:
 API REST desenvolvida em .NET (C#) com operações CRUD para autores, livros e gêneros.
+
 Frontend:
 Aplicação SPA desenvolvida em Angular ou React.
 Requisitos Técnicos Desejáveis
@@ -26,6 +27,7 @@ Environments
 Uso de DTOs, ViewModels e Entidades
 ORM + Migrations
 Testes de unidade
+
 Frontend
 Boas práticas de estruturação de componentes
 Gerenciamento de estado
