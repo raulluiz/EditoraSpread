@@ -1,4 +1,5 @@
 ﻿using EditoraSpread.Domain.Entities;
+using EditoraSpread.Domain.Interfaces;
 
 namespace EditoraSpread.Application.Services;
 

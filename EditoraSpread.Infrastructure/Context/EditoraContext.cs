@@ -12,15 +12,5 @@ public class EditoraContext(DbContextOptions<EditoraContext> options) : DbContex
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<Livro>()
-            .HasOne(l => l.Autor)
-            .WithMany(a => a.Livros)
-            .HasForeignKey(l => l.AutorId);
-
-        modelBuilder.Entity<Livro>()
-            .HasOne(l => l.Genero)
-            .WithMany(g => g.Livros)
-            .HasForeignKey(l => l.GeneroId);
     }
 }

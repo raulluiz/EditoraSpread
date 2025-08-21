@@ -1,7 +1,9 @@
 using EditoraSpread.Application.Mapper;
 using EditoraSpread.Application.Services;
 using EditoraSpread.Domain.Interfaces;
+using EditoraSpread.Infrastructure.Context;
 using EditoraSpread.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// 1. Pega a string de conexão do appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// 2. Registra o DbContext para injeção de dependência
+builder.Services.AddDbContext<EditoraContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
