@@ -1,44 +1,122 @@
-Objetivo do Desafio
-Desenvolver uma aplicação Full Stack para realizar a consulta, cadastro e manutenção de gêneros, autores e livros.
+# 📚 EditoraSpread -- Backend & Frontend
 
-Regras de Negócio
-Um gênero pode possuir vários livros.
-Um autor pode possuir vários livros.
-Cada livro pertence a apenas um autor e a apenas um gênero.
-Tecnologias obrigatórias
-Banco de Dados (escolha um):
-SQL Server
-MySQL
-PostgreSQL
+Este repositório contém instruções para rodar o **projeto completo**
+(API + Frontend).\
+⚠️ Os projetos estão em repositórios separados, mas este guia mostra
+como configurar e executar ambos localmente.
 
-Backend:
-API REST desenvolvida em .NET (C#) com operações CRUD para autores, livros e gêneros.
+------------------------------------------------------------------------
 
-Frontend:
-Aplicação SPA desenvolvida em Angular ou React.
-Requisitos Técnicos Desejáveis
+## 🚀 Tecnologias
 
-Backend
-Boas práticas (responsabilidade única, injeção de dependência, etc.)
-Versionamento da API
-Documentação (ex: Swagger)
-Respostas padronizadas (HTTP Status Codes)
-Environments
-Uso de DTOs, ViewModels e Entidades
-ORM + Migrations
-Testes de unidade
+-   **Back-end:** .NET 8, DDD, Entity Framework / Dapper, SQLServer\
+-   **Front-end:** Angular 20, TypeScript\
+-   **Banco de Dados:** SQLServer
 
-Frontend
-Boas práticas de estruturação de componentes
-Gerenciamento de estado
-Rotas
-Models, Services e Interfaces
-Environments
-Store e Interceptors
-Testes de unidade
+------------------------------------------------------------------------
 
-Entrega
-O projeto deve ser publicado em um repositório no GitHub com instruções claras de como configurar e executar o sistema (backend e frontend).
+## 📦 Pré-requisitos
 
-Prazo sugerido para entrega: até  (SEXTA 22/08 ).
-Após análise do código, caso o resultado seja positivo, entraremos em contato para marcar uma breve conversa para apresentação do projeto, que corresponde à terceira fase do processo.
+Antes de rodar o projeto, instale:
+
+-   [Node.js (LTS)](https://nodejs.org/)\
+-   [Angular CLI](https://angular.dev/cli)\
+-   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)\
+-   [SQLServer](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads) \
+-   Git
+
+------------------------------------------------------------------------
+
+## ⚙️ Configuração do Backend
+
+1.  Clone o repositório do backend:
+
+    ``` bash
+    git clone https://github.com/seu-usuario/editora-back.git
+    cd editora-back
+    ```
+
+2.  Configure o banco de dados no `appsettings.Development.json`:
+
+    ``` json
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=EditoraSpreadDB;Trusted_Connection=True;"
+    }
+    ```
+
+3.  Execute as migrações (se estiver usando EF):
+
+    ``` bash
+    dotnet ef database update
+    ```
+
+4.  Rode o projeto:
+
+    ``` bash
+    dotnet run --project src/EditoraSpread.Api
+    ```
+
+    A API ficará disponível em:
+
+        http://localhost:5000
+
+------------------------------------------------------------------------
+
+## 🎨 Configuração do Frontend
+
+1.  Clone o repositório do frontend:
+
+    ``` bash
+    git clone https://github.com/seu-usuario/editora-front.git
+    cd editora-front
+    ```
+
+2.  Instale as dependências:
+
+    ``` bash
+    npm install
+    ```
+
+3.  Configure a URL da API no `environment.ts`:
+
+    ``` ts
+    export const environment = {
+      apiUrl: 'http://localhost:5000'
+    };
+    ```
+
+4.  Rode o projeto:
+
+    ``` bash
+    ng serve -o
+    ```
+
+    O frontend ficará disponível em:
+
+        http://localhost:4200
+
+------------------------------------------------------------------------
+
+## ✅ Fluxo de Execução Local
+
+1.  Subir o **Backend** (`dotnet run` ou `docker run`)\
+2.  Subir o **Frontend** (`ng serve` ou `docker run`)\
+3.  Acessar o sistema em:\
+    👉 `http://localhost:4200` (Frontend)\
+    👉 `http://localhost:5000` (API)
+
+------------------------------------------------------------------------
+
+## 🧪 Testes
+
+### Backend
+
+``` bash
+dotnet test
+```
+
+### Frontend
+
+``` bash
+ng test
+```
